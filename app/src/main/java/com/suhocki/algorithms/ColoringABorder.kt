@@ -95,8 +95,8 @@ class ColoringABorder {
     }
 
     private fun isRoundedByTrue(booleanGrid: Array<BooleanArray>, i: Int, j: Int): Boolean {
-        val iMax = booleanGrid.first().lastIndex
-        val jMax = booleanGrid.lastIndex
+        val iMax = booleanGrid.lastIndex
+        val jMax = booleanGrid.first().lastIndex
         return if (i in 1 until iMax && j in 1 until jMax) {
             booleanGrid[i - 1][j] &&
                     booleanGrid[i][j - 1] &&
