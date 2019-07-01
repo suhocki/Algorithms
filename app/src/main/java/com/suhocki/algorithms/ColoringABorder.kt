@@ -6,8 +6,8 @@ package com.suhocki.algorithms
 class ColoringABorder {
     fun colorBorder(grid: Array<IntArray>, r0: Int, c0: Int, color: Int): Array<IntArray> {
         val ourColor = grid[r0][c0]
-        val yMax = grid.lastIndex
         val xMax = grid.first().lastIndex
+        val yMax = grid.lastIndex
         val isBorder = Array(grid.size) { BooleanArray(grid.first().size) }
         val traversedRight = Array(grid.size) { BooleanArray(grid.first().size) }
         val traversedBottom = Array(grid.size) { BooleanArray(grid.first().size) }
@@ -85,12 +85,25 @@ class ColoringABorder {
          */
         for (i in 0..yMax) {
             for (j in 0..xMax) {
-                if (isBorder[i][j]) {
+                if (isBorder[i][j] && !isRoundedByTrue(isBorder, i, j)) {
                     grid[i][j] = color
                 }
             }
         }
 
         return grid
+    }
+
+    private fun isRoundedByTrue(booleanGrid: Array<BooleanArray>, i: Int, j: Int): Boolean {
+        val iMax = booleanGrid.first().lastIndex
+        val jMax = booleanGrid.lastIndex
+        return if (i in 1 until iMax && j in 1 until jMax) {
+            booleanGrid[i - 1][j] &&
+                    booleanGrid[i][j - 1] &&
+                    booleanGrid[i + 1][j] &&
+                    booleanGrid[i][j + 1]
+        } else {
+            false
+        }
     }
 }
