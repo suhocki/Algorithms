@@ -116,4 +116,56 @@ class ColoringABorderTest {
             )
         )
     }
+
+    @Test
+    fun test5() {
+        // Given
+        val grid = arrayOf(
+            intArrayOf(1,2,1,2,1,2),
+            intArrayOf(2,2,2,2,1,2),
+            intArrayOf(1,2,2,2,1,2)
+        )
+        val r0 = 1
+        val c0 = 3
+        val color = 1
+
+        // When
+        val answer = pen.colorBorder(grid, r0, c0, color)
+
+        // Then
+        assert(
+            answer.contentDeepEquals(
+                arrayOf(
+                    intArrayOf(1,1,1,1,1,2),
+                    intArrayOf(1,2,1,1,1,2),
+                    intArrayOf(1,1,1,1,1,2)
+                )
+            )
+        )
+    }
+
+    @Test
+    fun test6() {
+        // Given
+        val grid = arrayOf(
+            intArrayOf(1,2),
+            intArrayOf(2,2)
+        )
+        val r0 = 1
+        val c0 = 1
+        val color = 1
+
+        // When
+        val answer = pen.colorBorder(grid, r0, c0, color)
+
+        // Then
+        assert(
+            answer.contentDeepEquals(
+                arrayOf(
+                    intArrayOf(1,1),
+                    intArrayOf(1,1)
+                )
+            )
+        )
+    }
 }
